@@ -5,7 +5,6 @@ import KeyBoard from "@components/keyBoard";
 function App() {
   return (
     <div className="App">
-      asdasd
       <KeyBoard />
     </div>
   );
