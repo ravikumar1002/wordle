@@ -1,9 +1,10 @@
 import { Key } from "./Key";
-import * as React from "react";
+// import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
+import { useEffect } from "react";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -16,15 +17,38 @@ const Item = styled(Paper)(({ theme }) => ({
 const KeyBoard = () => {
   const row1Keys = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   const row2Keys = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
-  const row3Keys = ["BACK","Z", "X", "C", "V", "B", "N", "M", "ENTER"];
+  const row3Keys = ["BACK", "Z", "X", "C", "V", "B", "N", "M", "ENTER"];
+
+  const handleKeyboard = (event: any) => {
+    if (event.key === "Enter") {
+      console.log("entre");
+    } else if (event.key === "Backspace") {
+      console.log("Backspace");
+    } else if (/^[A-Za-z]$/.test(event.key)) {
+      row1Keys.forEach((key) => {
+        if (event.key.toLowerCase() === key.toLowerCase()) {
+          console.log(event.key.toLowerCase());
+        }
+      });
+      row2Keys.forEach((key) => {
+        if (event.key.toLowerCase() === key.toLowerCase()) {
+          console.log(event.key.toLowerCase());
+        }
+      });
+      row3Keys.forEach((key) => {
+        if (event.key.toLowerCase() === key.toLowerCase()) {
+          console.log(event.key.toLowerCase());
+        }
+      });
+    } else {
+      console.log("please entre valid key");
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyboard);
+  }, [handleKeyboard]);
 
   return (
-    // <div>
-    //   {row1Keys.map((key) => {
-    //     return <Key keyLetter={key} key={key} />;
-    //   })}
-    // </div>
-
     <Box sx={{ flexGrow: 1 }}>
       <Grid
         container
