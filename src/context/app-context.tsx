@@ -3,6 +3,7 @@ import { boardDefaultValue } from "utils/words";
 
 export interface IAppDataContextState {
   onSelectLetter: (key: string) => void;
+  onDelete: () => void;
   currAttempt: {
     attempt: number;
     letter: number;
@@ -29,6 +30,7 @@ const AppDataProvider = (props: IAppDataProvider) => {
   const [board, setBoard] = useState<string[][]>(boardDefaultValue);
 
   const onSelectLetter = (key: string) => {
+    if (currAttempt.letter > 4) return;
     const newBoard = [...board];
     newBoard[currAttempt.attempt][currAttempt.letter] = key;
     setBoard(newBoard);
@@ -39,9 +41,24 @@ const AppDataProvider = (props: IAppDataProvider) => {
     });
   };
 
+  const onDelete = () => {
+    if (currAttempt.letter === 0) return;
+    const newBoard = [...board];
+    newBoard[currAttempt.attempt][currAttempt.letter - 1] = "";
+    setBoard(newBoard);
+    setCurrAttempt({ ...currAttempt, letter: currAttempt.letter - 1 });
+  };
+
   return (
     <appDataContext.Provider
-      value={{ onSelectLetter, currAttempt, setCurrAttempt, board, setBoard }}
+      value={{
+        onSelectLetter,
+        onDelete,
+        currAttempt,
+        setCurrAttempt,
+        board,
+        setBoard,
+      }}
     >
       {children}
     </appDataContext.Provider>
