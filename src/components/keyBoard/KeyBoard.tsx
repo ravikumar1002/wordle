@@ -1,10 +1,10 @@
 import { Key } from "./Key";
-// import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
+import { useAppData } from "../../context/app-context";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -19,7 +19,10 @@ const KeyBoard = () => {
   const row2Keys = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
   const row3Keys = ["BACK", "Z", "X", "C", "V", "B", "N", "M", "ENTER"];
 
+  const { onSelectLetter } = useAppData();
+
   const handleKeyboard = (event: any) => {
+    console.log(event);
     if (event.key === "Enter") {
       console.log("entre");
     } else if (event.key === "Backspace") {
@@ -27,26 +30,27 @@ const KeyBoard = () => {
     } else if (/^[A-Za-z]$/.test(event.key)) {
       row1Keys.forEach((key) => {
         if (event.key.toLowerCase() === key.toLowerCase()) {
-          console.log(event.key.toLowerCase());
+          onSelectLetter(key);
         }
       });
       row2Keys.forEach((key) => {
         if (event.key.toLowerCase() === key.toLowerCase()) {
-          console.log(event.key.toLowerCase());
+          onSelectLetter(key);
         }
       });
       row3Keys.forEach((key) => {
         if (event.key.toLowerCase() === key.toLowerCase()) {
-          console.log(event.key.toLowerCase());
+          onSelectLetter(key);
         }
       });
     } else {
       console.log("please entre valid key");
     }
   };
+
   useEffect(() => {
     document.addEventListener("keydown", handleKeyboard);
-  }, [handleKeyboard]);
+  }, []);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
