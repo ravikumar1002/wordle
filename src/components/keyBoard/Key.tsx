@@ -10,21 +10,21 @@ export const Key = (props: IKeyProps) => {
   const { keyLetter } = props;
   const { onSelectLetter } = useAppData();
 
-
   const selectKeyLetter = () => {
     if (keyLetter === "ENTER") {
-      console.log("entre")
+      console.log("entre");
     } else if (keyLetter === "backspace") {
-      console.log("back")
+      console.log("back");
     } else {
       onSelectLetter(keyLetter);
     }
   };
 
-
   return (
     <Grid xs={1}>
-      <Button variant="contained" onClick={selectKeyLetter}>{keyLetter}</Button>
+      <Button variant="contained" onClick={selectKeyLetter}>
+        {keyLetter}
+      </Button>
     </Grid>
   );
 };
