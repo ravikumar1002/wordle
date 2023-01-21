@@ -8,11 +8,12 @@ interface IKeyProps {
 
 export const Key = (props: IKeyProps) => {
   const { keyLetter } = props;
-  const { onSelectLetter, onDelete } = useAppData();
+  const { onSelectLetter, onDelete, onEnter } = useAppData();
 
   const selectKeyLetter = () => {
     if (keyLetter === "ENTER") {
       console.log("entre");
+      onEnter()
     } else if (keyLetter === "BACK") {
       console.log("delete")
       onDelete();

@@ -10,7 +10,6 @@ const BoardLetter = (props: IBoardLetterProps) => {
 
   const { letterPos, attemptVal } = props;
   const letter = board[attemptVal][letterPos];
-  console.log(letter);
   return <div className="letter"> {letter}</div>;
 };
 
