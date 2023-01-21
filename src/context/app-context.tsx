@@ -13,6 +13,8 @@ export interface IAppDataContextState {
       letter: number;
     }>
   >;
+  board: string[][];
+  setBoard: React.Dispatch<React.SetStateAction<string[][]>>;
 }
 interface IAppDataProvider {
   children: React.ReactNode;
@@ -30,7 +32,7 @@ const AppDataProvider = (props: IAppDataProvider) => {
     const newBoard = [...board];
     newBoard[currAttempt.attempt][currAttempt.letter] = key;
     setBoard(newBoard);
-    console.log(newBoard, "newBoard")
+    console.log(newBoard, "newBoard");
     setCurrAttempt({
       attempt: currAttempt.attempt,
       letter: currAttempt.letter + 1,
@@ -39,7 +41,7 @@ const AppDataProvider = (props: IAppDataProvider) => {
 
   return (
     <appDataContext.Provider
-      value={{ onSelectLetter, currAttempt, setCurrAttempt }}
+      value={{ onSelectLetter, currAttempt, setCurrAttempt, board, setBoard }}
     >
       {children}
     </appDataContext.Provider>
