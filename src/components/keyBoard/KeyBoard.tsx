@@ -19,9 +19,9 @@ const KeyBoard = () => {
   const row2Keys = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
   const row3Keys = ["BACK", "Z", "X", "C", "V", "B", "N", "M", "ENTER"];
 
-  const { onSelectLetter } = useAppData();
+  const { onSelectLetter, currAttempt } = useAppData();
 
-  const handleKeyboard = (event: any) => {
+  const handleKeyboard = useCallback((event: any) => {
     console.log(event);
     if (event.key === "Enter") {
       console.log("entre");
@@ -46,11 +46,17 @@ const KeyBoard = () => {
     } else {
       console.log("please entre valid key");
     }
-  };
+  },
+  [currAttempt]
+  );
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyboard);
-  }, []);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyboard);
+    };
+  }, [handleKeyboard]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
