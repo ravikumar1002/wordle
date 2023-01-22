@@ -53,7 +53,6 @@ const AppDataProvider = (props: IAppDataProvider) => {
     const newBoard = [...board];
     newBoard[currAttempt.attempt][currAttempt.letter] = key;
     setBoard(newBoard);
-    console.log(newBoard, "newBoard");
     setCurrAttempt({
       attempt: currAttempt.attempt,
       letter: currAttempt.letter + 1,

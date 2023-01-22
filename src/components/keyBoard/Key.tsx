@@ -12,10 +12,8 @@ export const Key = (props: IKeyProps) => {
 
   const selectKeyLetter = () => {
     if (keyLetter === "ENTER") {
-      console.log("entre");
       onEnter()
     } else if (keyLetter === "BACK") {
-      console.log("delete")
       onDelete();
     } else {
       onSelectLetter(keyLetter);
@@ -24,7 +22,7 @@ export const Key = (props: IKeyProps) => {
 
   return (
     <Grid xs={1}>
-      <Button variant="contained" onClick={selectKeyLetter}>
+      <Button variant="outlined" onClick={selectKeyLetter}>
         {keyLetter}
       </Button>
     </Grid>
