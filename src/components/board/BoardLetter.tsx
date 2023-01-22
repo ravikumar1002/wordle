@@ -46,7 +46,7 @@ const BoardLetter = (props: IBoardLetterProps) => {
     ) {
       return "2px solid black";
     }
-    return "inherit";
+    return "1px solid grey;";
   };
 
   return (

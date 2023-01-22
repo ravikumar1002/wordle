@@ -4,9 +4,6 @@ import { useAppData } from "../../context/app-context";
 
 interface IKeyProps {
   keyLetter: string;
-  // disabled?: boolean;
-  // guessed?: boolean;
-  // correct?: boolean;
 }
 
 export const Key = (props: IKeyProps) => {
@@ -52,7 +49,7 @@ export const Key = (props: IKeyProps) => {
     if (keyLetter === "ENTER" && currAttempt.letter === 5) {
       return "2px solid black";
     }
-    return "inherit";
+    return "1px solid black";
   };
 
   return (
