@@ -48,12 +48,12 @@ export const Key = (props: IKeyProps) => {
     return "inherit";
   };
 
-
   const getEnterBorder = () => {
-    if(keyLetter === "ENTER" && currAttempt.letter === 5) {
-      return "2px solid black"
+    if (keyLetter === "ENTER" && currAttempt.letter === 5) {
+      return "2px solid black";
     }
-  }
+    return "inherit";
+  };
 
   return (
     <Grid xs={1}>
@@ -62,7 +62,7 @@ export const Key = (props: IKeyProps) => {
         onClick={selectKeyLetter}
         sx={{
           backgroundColor: getBackGroundColor(),
-          border: getEnterBorder()
+          border: getEnterBorder(),
         }}
       >
         {keyLetter}

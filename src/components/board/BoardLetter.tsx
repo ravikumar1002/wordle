@@ -29,7 +29,7 @@ const BoardLetter = (props: IBoardLetterProps) => {
     (correct ? "correct" : guessed ? "guessed" : "error");
 
   useEffect(() => {
-    console.log(letter)
+    console.log(letter);
     if (letter !== "" && !correct && !guessed) {
       setDisableLetters((prev: string[]) => [...prev, letter]);
     } else if (letter !== "" && correct) {
@@ -40,18 +40,23 @@ const BoardLetter = (props: IBoardLetterProps) => {
   }, [currAttempt.attempt]);
 
   const getNextFillBorder = () => {
-    if(attemptVal === currAttempt.attempt && letterPos  === currAttempt.letter){
-      return "2px solid black"
+    if (
+      attemptVal === currAttempt.attempt &&
+      letterPos === currAttempt.letter
+    ) {
+      return "2px solid black";
     }
-  }
-
-  
+    return "inherit";
+  };
 
   return (
-    <Box className="letter" id={keyStyle === false ? "" : keyStyle} 
-    sx={{
-      border: getNextFillBorder()
-    }}>
+    <Box
+      className="letter"
+      id={keyStyle === false ? "" : keyStyle}
+      sx={{
+        border: getNextFillBorder(),
+      }}
+    >
       {letter}
     </Box>
   );
