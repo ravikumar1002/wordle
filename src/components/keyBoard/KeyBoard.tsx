@@ -17,9 +17,10 @@ const Item = styled(Paper)(({ theme }) => ({
 const KeyBoard = () => {
   const row1Keys = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   const row2Keys = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
-  const row3Keys = ["BACK", "Z", "X", "C", "V", "B", "N", "M", "ENTER"];
+  const row3Keys = ["Z", "X", "C", "V", "B", "N", "M"];
+  const row4Keys = ["BACK", "ENTER"];
 
-  const { onSelectLetter, currAttempt, onEnter, onDelete } = useAppData();
+  const { onSelectLetter, currAttempt, onEnter, onDelete, disableLetters } = useAppData();
 
   const handleKeyboard = useCallback(
     (event: any) => {
@@ -39,6 +40,11 @@ const KeyBoard = () => {
           }
         });
         row3Keys.forEach((key) => {
+          if (event.key.toLowerCase() === key.toLowerCase()) {
+            onSelectLetter(key);
+          }
+        });
+        row4Keys.forEach((key) => {
           if (event.key.toLowerCase() === key.toLowerCase()) {
             onSelectLetter(key);
           }
@@ -69,7 +75,13 @@ const KeyBoard = () => {
         }}
       >
         {row1Keys.map((key) => {
-          return <Key keyLetter={key} key={key} />;
+          return (
+            <Key
+              keyLetter={key}
+              key={key}
+              disabled={disableLetters.includes(key)}
+            />
+          );
         })}
       </Grid>
       <Grid
@@ -81,7 +93,13 @@ const KeyBoard = () => {
         }}
       >
         {row2Keys.map((key) => {
-          return <Key keyLetter={key} key={key} />;
+          return (
+            <Key
+              keyLetter={key}
+              key={key}
+              disabled={disableLetters.includes(key)}
+            />
+          );
         })}
       </Grid>
       <Grid
@@ -93,6 +111,24 @@ const KeyBoard = () => {
         }}
       >
         {row3Keys.map((key) => {
+          return (
+            <Key
+              keyLetter={key}
+              key={key}
+              disabled={disableLetters.includes(key)}
+            />
+          );
+        })}
+      </Grid>
+      <Grid
+        container
+        spacing={2}
+        columns={{ xs: 12, sm: 16, md: 17 }}
+        sx={{
+          justifyContent: "center",
+        }}
+      >
+        {row4Keys.map((key) => {
           return <Key keyLetter={key} key={key} />;
         })}
       </Grid>

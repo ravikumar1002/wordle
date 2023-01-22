@@ -7,7 +7,7 @@ interface IBoardLetterProps {
 }
 
 const BoardLetter = (props: IBoardLetterProps) => {
-  const { board, currAttempt, correctWord } = useAppData();
+  const { board, currAttempt, correctWord, setDisableLetters } = useAppData();
 
   const { letterPos, attemptVal } = props;
 
@@ -22,6 +22,7 @@ const BoardLetter = (props: IBoardLetterProps) => {
 
   useEffect(() => {
     if (letter !== "" && !correct && !guessed) {
+      setDisableLetters((prev: string[]) => [...prev, letter]);
       console.log(letter);
     }
   }, [currAttempt.attempt]);
