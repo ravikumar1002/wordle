@@ -19,8 +19,8 @@ export interface IAppDataContextState {
   setCurrAttempt: React.Dispatch<React.SetStateAction<ICurrAttempt>>;
   board: string[][];
   setBoard: React.Dispatch<React.SetStateAction<string[][]>>;
-  wordSet: Set<unknown>;
-  setWordSet: React.Dispatch<React.SetStateAction<Set<unknown>>>;
+  wordSet: string[];
+  setWordSet: React.Dispatch<React.SetStateAction<string[]>>;
   correctWord: string;
   setCorrectWord: React.Dispatch<React.SetStateAction<string>>;
   gameOver: IGameOver;
@@ -47,7 +47,7 @@ const AppDataProvider = (props: IAppDataProvider) => {
     letter: 0,
   });
   const [board, setBoard] = useState<string[][]>(boardDefaultValue);
-  const [wordSet, setWordSet] = useState(new Set());
+  const [wordSet, setWordSet] = useState<string[]>([]);
   const [disableLetters, setDisableLetters] = useState<string[]>([]);
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const [correctLetters, setCorrectLetters] = useState<string[]>([]);
@@ -83,16 +83,18 @@ const AppDataProvider = (props: IAppDataProvider) => {
     for (let i = 0; i < 5; i++) {
       currWord += board[currAttempt.attempt][i];
     }
-    if (wordSet.has(currWord.toLowerCase())) {
+
+    if (wordSet.includes(currWord.toLowerCase())) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
     } else {
       console.log("Word not found");
     }
 
-    if (currWord === correctWord) {
+    if (currWord.toLowerCase() === correctWord.toLowerCase()) {
       setGameOver({ gameOver: true, guessedWord: true });
       return;
     }
+
     if (currAttempt.attempt === 5) {
       setGameOver({ gameOver: true, guessedWord: false });
       return;

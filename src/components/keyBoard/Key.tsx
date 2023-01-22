@@ -24,7 +24,6 @@ export const Key = (props: IKeyProps) => {
     } else if (keyLetter === "BACK") {
       onDelete();
     } else {
-      console.log(currAttempt);
       onSelectLetter(keyLetter);
     }
   };

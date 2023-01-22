@@ -10,14 +10,14 @@ export const boardDefaultValue: string[][] = [
 ];
 
 export const generateWordSet = async () => {
-    let wordSet;
-    let todaysWord;
+    let wordSet: string[] = [];
+    let todaysWord: string = '';
     await fetch(wordBank)
         .then((response) => response.text())
         .then((result) => {
             const wordArr = result.split("\r\n");
             todaysWord = wordArr[Math.floor(Math.random() * wordArr.length)];
-            wordSet = new Set(wordArr);
+            wordSet = wordArr;
         });
     return { wordSet, todaysWord };
 };
