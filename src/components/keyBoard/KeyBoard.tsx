@@ -25,13 +25,11 @@ const KeyBoard = () => {
     currAttempt,
     onEnter,
     onDelete,
-    disableLetters,
-    correctLetters,
-    guessedLetters,
   } = useAppData();
 
   const handleKeyboard = useCallback(
     (event: any) => {
+      console.log(currAttempt)
       if (event.key === "Enter") {
         onEnter();
       } else if (event.key === "Backspace") {
@@ -83,15 +81,7 @@ const KeyBoard = () => {
         }}
       >
         {row1Keys.map((key) => {
-          return (
-            <Key
-              keyLetter={key}
-              key={key}
-              // disabled={disableLetters.includes(key)}
-              // guessed={guessedLetters.includes(key)}
-              // correct={correctLetters.includes(key)}
-            />
-          );
+          return <Key keyLetter={key} key={key} />;
         })}
       </Grid>
       <Grid
@@ -103,15 +93,7 @@ const KeyBoard = () => {
         }}
       >
         {row2Keys.map((key) => {
-          return (
-            <Key
-              keyLetter={key}
-              key={key}
-              // disabled={disableLetters.includes(key)}
-              // guessed={guessedLetters.includes(key)}
-              // correct={correctLetters.includes(key)}
-            />
-          );
+          return <Key keyLetter={key} key={key} />;
         })}
       </Grid>
       <Grid
@@ -123,15 +105,7 @@ const KeyBoard = () => {
         }}
       >
         {row3Keys.map((key) => {
-          return (
-            <Key
-              keyLetter={key}
-              key={key}
-              // disabled={disableLetters.includes(key)}
-              // guessed={guessedLetters.includes(key)}
-              // correct={correctLetters.includes(key)}
-            />
-          );
+          return <Key keyLetter={key} key={key} />;
         })}
       </Grid>
       <Grid

@@ -18,21 +18,21 @@ export const Key = (props: IKeyProps) => {
     disableLetters,
     correctLetters,
     guessedLetters,
+    currAttempt,
   } = useAppData();
-  // disabled={disableLetters.includes(key)}
-  // guessed={guessedLetters.includes(key)}
-  // correct={correctLetters.includes(key)}
+
   const selectKeyLetter = () => {
     if (keyLetter === "ENTER") {
       onEnter();
     } else if (keyLetter === "BACK") {
       onDelete();
     } else {
+      console.log(currAttempt);
       onSelectLetter(keyLetter);
     }
   };
 
-  const getKeyStyle = () => {
+  const getBackGroundColor = () => {
     if (disableLetters.includes(keyLetter)) {
       return "#3a393c";
     }
@@ -48,13 +48,21 @@ export const Key = (props: IKeyProps) => {
     return "inherit";
   };
 
+
+  const getEnterBorder = () => {
+    if(keyLetter === "ENTER" && currAttempt.letter === 5) {
+      return "2px solid black"
+    }
+  }
+
   return (
     <Grid xs={1}>
       <Button
         variant="outlined"
         onClick={selectKeyLetter}
         sx={{
-          backgroundColor: getKeyStyle(),
+          backgroundColor: getBackGroundColor(),
+          border: getEnterBorder()
         }}
       >
         {keyLetter}
