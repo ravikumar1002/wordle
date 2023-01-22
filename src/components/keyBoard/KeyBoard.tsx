@@ -19,35 +19,35 @@ const KeyBoard = () => {
   const row2Keys = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
   const row3Keys = ["BACK", "Z", "X", "C", "V", "B", "N", "M", "ENTER"];
 
-  const { onSelectLetter, currAttempt } = useAppData();
+  const { onSelectLetter, currAttempt, onEnter, onDelete } = useAppData();
 
-  const handleKeyboard = useCallback((event: any) => {
-    console.log(event);
-    if (event.key === "Enter") {
-      console.log("entre");
-    } else if (event.key === "Backspace") {
-      console.log("Backspace");
-    } else if (/^[A-Za-z]$/.test(event.key)) {
-      row1Keys.forEach((key) => {
-        if (event.key.toLowerCase() === key.toLowerCase()) {
-          onSelectLetter(key);
-        }
-      });
-      row2Keys.forEach((key) => {
-        if (event.key.toLowerCase() === key.toLowerCase()) {
-          onSelectLetter(key);
-        }
-      });
-      row3Keys.forEach((key) => {
-        if (event.key.toLowerCase() === key.toLowerCase()) {
-          onSelectLetter(key);
-        }
-      });
-    } else {
-      console.log("please entre valid key");
-    }
-  },
-  [currAttempt]
+  const handleKeyboard = useCallback(
+    (event: any) => {
+      if (event.key === "Enter") {
+        onEnter();
+      } else if (event.key === "Backspace") {
+        onDelete();
+      } else if (/^[A-Za-z]$/.test(event.key)) {
+        row1Keys.forEach((key) => {
+          if (event.key.toLowerCase() === key.toLowerCase()) {
+            onSelectLetter(key);
+          }
+        });
+        row2Keys.forEach((key) => {
+          if (event.key.toLowerCase() === key.toLowerCase()) {
+            onSelectLetter(key);
+          }
+        });
+        row3Keys.forEach((key) => {
+          if (event.key.toLowerCase() === key.toLowerCase()) {
+            onSelectLetter(key);
+          }
+        });
+      } else {
+        console.log("please entre valid key");
+      }
+    },
+    [currAttempt]
   );
 
   useEffect(() => {
