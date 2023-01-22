@@ -4,13 +4,24 @@ import { useAppData } from "../../context/app-context";
 
 interface IKeyProps {
   keyLetter: string;
-  disabled?: any;
+  // disabled?: boolean;
+  // guessed?: boolean;
+  // correct?: boolean;
 }
 
 export const Key = (props: IKeyProps) => {
-  const { keyLetter, disabled } = props;
-  const { onSelectLetter, onDelete, onEnter } = useAppData();
-
+  const { keyLetter } = props;
+  const {
+    onSelectLetter,
+    onDelete,
+    onEnter,
+    disableLetters,
+    correctLetters,
+    guessedLetters,
+  } = useAppData();
+  // disabled={disableLetters.includes(key)}
+  // guessed={guessedLetters.includes(key)}
+  // correct={correctLetters.includes(key)}
   const selectKeyLetter = () => {
     if (keyLetter === "ENTER") {
       onEnter();
@@ -21,14 +32,29 @@ export const Key = (props: IKeyProps) => {
     }
   };
 
+  const getKeyStyle = () => {
+    if (disableLetters.includes(keyLetter)) {
+      return "#3a393c";
+    }
+
+    if (guessedLetters.includes(keyLetter)) {
+      return "#b49f39";
+    }
+
+    if (correctLetters.includes(keyLetter)) {
+      return "#528d4e";
+    }
+
+    return "inherit";
+  };
+
   return (
     <Grid xs={1}>
       <Button
         variant="outlined"
         onClick={selectKeyLetter}
-        id={disabled ? "disabled" : ""}
         sx={{
-          backgroundColor: disabled? "#3a393c": "inherit"
+          backgroundColor: getKeyStyle(),
         }}
       >
         {keyLetter}

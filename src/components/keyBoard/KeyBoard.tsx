@@ -20,7 +20,15 @@ const KeyBoard = () => {
   const row3Keys = ["Z", "X", "C", "V", "B", "N", "M"];
   const row4Keys = ["BACK", "ENTER"];
 
-  const { onSelectLetter, currAttempt, onEnter, onDelete, disableLetters } = useAppData();
+  const {
+    onSelectLetter,
+    currAttempt,
+    onEnter,
+    onDelete,
+    disableLetters,
+    correctLetters,
+    guessedLetters,
+  } = useAppData();
 
   const handleKeyboard = useCallback(
     (event: any) => {
@@ -79,7 +87,9 @@ const KeyBoard = () => {
             <Key
               keyLetter={key}
               key={key}
-              disabled={disableLetters.includes(key)}
+              // disabled={disableLetters.includes(key)}
+              // guessed={guessedLetters.includes(key)}
+              // correct={correctLetters.includes(key)}
             />
           );
         })}
@@ -97,7 +107,9 @@ const KeyBoard = () => {
             <Key
               keyLetter={key}
               key={key}
-              disabled={disableLetters.includes(key)}
+              // disabled={disableLetters.includes(key)}
+              // guessed={guessedLetters.includes(key)}
+              // correct={correctLetters.includes(key)}
             />
           );
         })}
@@ -115,7 +127,9 @@ const KeyBoard = () => {
             <Key
               keyLetter={key}
               key={key}
-              disabled={disableLetters.includes(key)}
+              // disabled={disableLetters.includes(key)}
+              // guessed={guessedLetters.includes(key)}
+              // correct={correctLetters.includes(key)}
             />
           );
         })}

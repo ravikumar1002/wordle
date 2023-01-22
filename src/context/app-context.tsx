@@ -27,6 +27,10 @@ export interface IAppDataContextState {
   setGameOver: React.Dispatch<React.SetStateAction<IGameOver>>;
   disableLetters: string[];
   setDisableLetters: React.Dispatch<React.SetStateAction<string[]>>;
+  guessedLetters: string[];
+  setGuessedLetters: React.Dispatch<React.SetStateAction<string[]>>;
+  correctLetters: string[];
+  setCorrectLetters: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 interface IAppDataProvider {
@@ -45,6 +49,8 @@ const AppDataProvider = (props: IAppDataProvider) => {
   const [board, setBoard] = useState<string[][]>(boardDefaultValue);
   const [wordSet, setWordSet] = useState(new Set());
   const [disableLetters, setDisableLetters] = useState<string[]>([]);
+  const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
+  const [correctLetters, setCorrectLetters] = useState<string[]>([]);
   const [correctWord, setCorrectWord] = useState<string>("");
   const [gameOver, setGameOver] = useState<IGameOver>({
     gameOver: false,
@@ -118,6 +124,10 @@ const AppDataProvider = (props: IAppDataProvider) => {
         setCorrectWord,
         disableLetters,
         setDisableLetters,
+        guessedLetters,
+        setGuessedLetters,
+        correctLetters,
+        setCorrectLetters,
       }}
     >
       {children}
@@ -126,9 +136,9 @@ const AppDataProvider = (props: IAppDataProvider) => {
 };
 
 const useAppData = () => {
-  const context  = useContext(appDataContext);
-  if(!context) throw new Error("Neww problem")
-  return context
-}
+  const context = useContext(appDataContext);
+  if (!context) throw new Error("Not Context");
+  return context;
+};
 
 export { useAppData, AppDataProvider };
