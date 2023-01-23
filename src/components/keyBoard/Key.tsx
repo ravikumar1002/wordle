@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import { useAppData } from "../../context/app-context";
+import { useAppData } from "@context/app-context";
 
 interface IKeyProps {
   keyLetter: string;

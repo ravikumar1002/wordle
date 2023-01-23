@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { boardDefaultValue, generateWordSet } from "../utils/words";
+import { boardDefaultValue, generateWordSet } from "@utils/words";
 
 interface ICurrAttempt {
   attempt: number;

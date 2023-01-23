@@ -1,4 +1,4 @@
-import { AppDataProvider } from "context/app-context";
+import { AppDataProvider } from "@context/app-context";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";

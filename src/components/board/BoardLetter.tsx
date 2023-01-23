@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAppData } from "../../context/app-context";
+import { useAppData } from "@context/app-context";
 import Box from "@mui/material/Box";
 
 interface IBoardLetterProps {
