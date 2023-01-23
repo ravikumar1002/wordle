@@ -107,7 +107,14 @@ const AppDataProvider = (props: IAppDataProvider) => {
       gameOver: false,
       guessedWord: false,
     });
-    setBoard([]);
+    setBoard([
+      ["", "", "", "", ""],
+      ["", "", "", "", ""],
+      ["", "", "", "", ""],
+      ["", "", "", "", ""],
+      ["", "", "", "", ""],
+      ["", "", "", "", ""],
+    ]);
     setGuessedLetters([]);
     setDisableLetters([]);
     // disableLetters.length = 0
@@ -117,7 +124,7 @@ const AppDataProvider = (props: IAppDataProvider) => {
       setCorrectWord(words?.todaysWord);
     });
     setCurrAttempt({ attempt: 0, letter: 0 });
-    setBoard([...boardDefaultValue])
+    // setBoard([...boardDefaultValue]);
     console.log(board, disableLetters, correctLetters, guessedLetters);
   };
 
