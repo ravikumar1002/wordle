@@ -20,7 +20,8 @@ const BasicModal = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
-  const { gameOver, currAttempt } = useAppData();
+  const { gameOver, currAttempt, onRetry } = useAppData();
+
   useEffect(() => {
     handleOpen();
   }, [gameOver]);
@@ -44,6 +45,7 @@ const BasicModal = () => {
 
           <button
             onClick={() => {
+              onRetry();
               handleClose();
             }}
           >
