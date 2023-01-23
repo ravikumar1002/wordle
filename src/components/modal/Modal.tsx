@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useEffect, useState } from "react";
-import { useAppData } from "context/app-context";
+import { useAppData } from "@context/app-context";
 
 const style = {
   position: "absolute" as "absolute",
