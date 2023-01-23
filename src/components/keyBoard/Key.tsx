@@ -59,6 +59,11 @@ export const Key = (props: IKeyProps) => {
         sx={{
           backgroundColor: getBackGroundColor(),
           border: getEnterBorder(),
+          minWidth: {xs : "20px" , sm: "30px", md:"40px", lg:"50px" },
+          padding: {
+            xs: "1.5rem 1rem",
+            md: "0.5rem 1rem"
+          }
         }}
       >
         {keyLetter}
