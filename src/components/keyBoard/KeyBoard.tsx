@@ -74,8 +74,8 @@ const KeyBoard = () => {
     <Box sx={{ flexGrow: 1 }}>
       <Grid
         container
-        spacing={2}
-        columns={{ xs: 12, sm: 16, md: 20 }}
+        spacing={{ xs: 2, sm: 2,}}
+        columns={{ xs: 11, sm: 16, md: 22, lg: 22 }}
         sx={{
           justifyContent: "center",
         }}
@@ -87,7 +87,7 @@ const KeyBoard = () => {
       <Grid
         container
         spacing={2}
-        columns={{ xs: 12, sm: 16, md: 20 }}
+        columns={{ xs: 11, sm: 16, md: 21 , lg: 22}}
         sx={{
           justifyContent: "center",
         }}
@@ -99,7 +99,7 @@ const KeyBoard = () => {
       <Grid
         container
         spacing={2}
-        columns={{ xs: 12, sm: 16, md: 17 }}
+        columns={{ xs: 11, sm: 16, md: 22 , lg: 22}}
         sx={{
           justifyContent: "center",
         }}
@@ -111,7 +111,7 @@ const KeyBoard = () => {
       <Grid
         container
         spacing={2}
-        columns={{ xs: 12, sm: 16, md: 17 }}
+        columns={{ xs: 7, sm: 9, md: 13 }}
         sx={{
           justifyContent: "center",
         }}

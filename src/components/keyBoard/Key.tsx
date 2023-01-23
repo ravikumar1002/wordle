@@ -51,6 +51,17 @@ export const Key = (props: IKeyProps) => {
     return "1px solid black";
   };
 
+  const getColor = () => {
+    if (
+      disableLetters.includes(keyLetter) ||
+      guessedLetters.includes(keyLetter) ||
+      correctLetters.includes(keyLetter)
+    ) {
+      return "white";
+    }
+    return "black";
+  };
+
   return (
     <Grid xs={1}>
       <Button
@@ -59,6 +70,12 @@ export const Key = (props: IKeyProps) => {
         sx={{
           backgroundColor: getBackGroundColor(),
           border: getEnterBorder(),
+          color: getColor(),
+          minWidth: { xs: "35px", sm: "30px", md: "40px", lg: "50px" },
+          padding: {
+            xs: "1.5rem 1rem",
+            md: "0.5rem 1rem",
+          },
         }}
       >
         {keyLetter}

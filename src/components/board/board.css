@@ -3,7 +3,7 @@
   height: 350px;
   display: flex;
   flex-direction: column;
-  margin:  2rem 0.5rem;
+  margin: 2rem 0.5rem;
 }
 
 .row {
@@ -28,12 +28,22 @@
 
 #correct {
   background-color: #528d4e;
+  color: white;
 }
 
 #guessed {
   background-color: #b49f39;
+  color: white;
 }
 
 #error {
   background-color: #3a393c;
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .board {
+    width: 325px;
+    height: 325px;
+  }
 }

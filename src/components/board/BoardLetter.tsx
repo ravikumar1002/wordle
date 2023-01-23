@@ -31,11 +31,11 @@ const BoardLetter = (props: IBoardLetterProps) => {
   useEffect(() => {
     console.log(letter);
     if (letter !== "" && !correct && !guessed) {
-      setDisableLetters((prev: string[]) => [...prev, letter]);
+      setDisableLetters((prev: string[]) => [...new Set([...prev, letter])]);
     } else if (letter !== "" && correct) {
-      setCorrectLetters((prev: string[]) => [...prev, letter]);
+      setCorrectLetters((prev: string[]) => [...new Set([...prev, letter])]);
     } else if (letter !== "" && guessed) {
-      setGuessedLetters((prev: string[]) => [...prev, letter]);
+      setGuessedLetters((prev: string[]) => [...new Set([...prev, letter])]);
     }
   }, [currAttempt.attempt]);
 

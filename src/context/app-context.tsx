@@ -15,6 +15,7 @@ export interface IAppDataContextState {
   onSelectLetter: (key: string) => void;
   onDelete: () => void;
   onEnter: () => void;
+  onRetry: () => void;
   currAttempt: ICurrAttempt;
   setCurrAttempt: React.Dispatch<React.SetStateAction<ICurrAttempt>>;
   board: string[][];
@@ -46,7 +47,7 @@ const AppDataProvider = (props: IAppDataProvider) => {
     attempt: 0,
     letter: 0,
   });
-  const [board, setBoard] = useState<string[][]>(boardDefaultValue);
+  const [board, setBoard] = useState<string[][]>([...boardDefaultValue]);
   const [wordSet, setWordSet] = useState<string[]>([]);
   const [disableLetters, setDisableLetters] = useState<string[]>([]);
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
@@ -101,12 +102,42 @@ const AppDataProvider = (props: IAppDataProvider) => {
     }
   };
 
+  const onRetry = () => {
+    setGameOver({
+      gameOver: false,
+      guessedWord: false,
+    });
+    setBoard([
+      ["", "", "", "", ""],
+      ["", "", "", "", ""],
+      ["", "", "", "", ""],
+      ["", "", "", "", ""],
+      ["", "", "", "", ""],
+      ["", "", "", "", ""],
+    ]);
+    setGuessedLetters([]);
+    setDisableLetters([]);
+    // disableLetters.length = 0
+    setCorrectLetters([]);
+    generateWordSet().then((words) => {
+      setWordSet(words?.wordSet);
+      setCorrectWord(words?.todaysWord);
+    });
+    setCurrAttempt({ attempt: 0, letter: 0 });
+    // setBoard([...boardDefaultValue]);
+    console.log(board, disableLetters, correctLetters, guessedLetters);
+  };
+
   useEffect(() => {
     generateWordSet().then((words) => {
       setWordSet(words?.wordSet);
       setCorrectWord(words?.todaysWord);
     });
   }, []);
+
+  useEffect(() => {
+    console.log(guessedLetters);
+  }, [guessedLetters]);
 
   return (
     <appDataContext.Provider
@@ -130,6 +161,7 @@ const AppDataProvider = (props: IAppDataProvider) => {
         setGuessedLetters,
         correctLetters,
         setCorrectLetters,
+        onRetry,
       }}
     >
       {children}
