@@ -37,6 +37,14 @@ function App() {
             display: "flex",
             color: "text.primary",
             padding: "0.5rem 1rem",
+            marginBottom: "0.5rem",
+            borderBottom: `2px solid ${
+              appTheme.palette.mode === "light" ? "black" : "white"
+            }`,
+            boxShadow:
+              appTheme.palette.mode === "light"
+                ? "0px -6px 8px 11px #d3d3d3"
+                : "0px -6px 8px 11px #525252",
           }}
         >
           <Typography
