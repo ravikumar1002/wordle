@@ -43,6 +43,7 @@ export const gameDataContext = createContext<IGameDataContextState | null>(null)
 
 const GameDataProvider = (props: IGameDataProvider) => {
   const { children } = props;
+  const [alertState, setAlertState] = useState<boolean>(false)
 
   const [currAttempt, setCurrAttempt] = useState<ICurrAttempt>({
     attempt: 0,
@@ -89,9 +90,7 @@ const GameDataProvider = (props: IGameDataProvider) => {
     if (wordSet.includes(currWord.toLowerCase())) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
     } else {
-      <Alert icon={false} severity="success">
-        This is a success alert — check it out!
-      </Alert>
+      //
     }
 
     if (currWord.toLowerCase() === correctWord.toLowerCase()) {

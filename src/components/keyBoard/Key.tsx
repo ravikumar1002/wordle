@@ -1,4 +1,4 @@
-import { Button, useTheme } from "@mui/material";
+import { Button, useTheme, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useGameData } from "@context/game-context";
 import { useAppData } from "@context/app-data-context";
@@ -79,9 +79,13 @@ export const Key = (props: IKeyProps) => {
             xs: "1.5rem 1rem",
             md: "0.5rem 1rem",
           },
+          "&:hover": {
+            color: "palette.action.active",
+            background: getBackGroundColor(),
+          },
         }}
       >
-        {keyLetter}
+          {keyLetter}
       </Button>
     </Grid>
   );

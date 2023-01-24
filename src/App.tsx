@@ -5,7 +5,7 @@ import Board from "@components/board";
 import { Typography, Box, IconButton } from "@mui/material";
 import BasicModal from "@components/modal";
 import { useGameData } from "@context/game-context";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 // import theme from "@config/baseTheme";
 import { useMemo, useState } from "react";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
@@ -14,19 +14,14 @@ import { useAppData } from "@context/app-data-context";
 
 function App() {
   const { gameOver } = useGameData();
-  const { mode, setMode, theme } = useAppData();
-  const appTheme = createTheme(theme);
+  const { mode, setMode, appTheme } = useAppData();
 
-  const colorMode = useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode((prevMode: string) =>
-          prevMode === "light" ? "dark" : "light"
-        );
-      },
-    }),
-    []
-  );
+  const theme = useTheme();
+
+  const colorMode = () => {
+    console.log(appTheme.palette.mode, theme.palette.mode);
+    setMode((prevMode: string) => (prevMode === "light" ? "dark" : "light"));
+  };
 
   return (
     <ThemeProvider theme={appTheme}>
@@ -36,22 +31,26 @@ function App() {
           bgcolor: "background.default",
         }}
       >
-        <Box sx={{
-          display: "flex"
-        }}>
-          <Typography variant="h2" component="h2" textAlign={"center"} sx={{
-            color: "text.primary",
-            alignSelf: "center",
-            flexGrow: "1",
-          }}>
+        <Box
+          sx={{
+            display: "flex",
+            color:"text.primary"
+          }}
+        >
+          <Typography
+            variant="h2"
+            component="h2"
+            textAlign={"center"}
+            sx={{
+              color: "text.primary",
+              alignSelf: "center",
+              flexGrow: "1",
+            }}
+          >
             Wordle
           </Typography>
-          <IconButton
-            sx={{ ml: 1 }}
-            onClick={colorMode.toggleColorMode}
-            color="inherit"
-          >
-            {theme.palette.mode === "dark" ? (
+          <IconButton sx={{ ml: 1 }} onClick={colorMode} color="inherit">
+            {appTheme.palette.mode === "dark" ? (
               <Brightness7Icon />
             ) : (
               <Brightness4Icon />
