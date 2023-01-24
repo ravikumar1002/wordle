@@ -34,12 +34,13 @@ function App() {
         <Box
           sx={{
             display: "flex",
-            color:"text.primary"
+            color:"text.primary",
+            padding: "0.5rem 1rem",
           }}
         >
           <Typography
-            variant="h2"
-            component="h2"
+            variant="h3"
+            component="h3"
             textAlign={"center"}
             sx={{
               color: "text.primary",
