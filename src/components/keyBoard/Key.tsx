@@ -1,6 +1,7 @@
-import { Button } from "@mui/material";
+import { Button, useTheme } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import { useAppData } from "../../context/app-context";
+import { useGameData } from "@context/game-context";
+import { useAppData } from "@context/app-data-context";
 
 interface IKeyProps {
   keyLetter: string;
@@ -16,12 +17,14 @@ export const Key = (props: IKeyProps) => {
     correctLetters,
     guessedLetters,
     currAttempt,
-  } = useAppData();
+  } = useGameData();
+
+  const { mode } = useAppData();
 
   const selectKeyLetter = () => {
     if (keyLetter === "ENTER") {
       onEnter();
-    } else if (keyLetter === "BACK") {
+    } else if (keyLetter === "CLEAR") {
       onDelete();
     } else {
       onSelectLetter(keyLetter);
@@ -41,7 +44,7 @@ export const Key = (props: IKeyProps) => {
       return "#528d4e";
     }
 
-    return "inherit";
+    return mode === "dark" ? "#5f5f5f" : "#ebebeb";
   };
 
   const getEnterBorder = () => {

@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useEffect, useState } from "react";
-import { useAppData } from "context/app-context";
+import { useGameData } from "@context/game-context";
 
 const style = {
   position: "absolute" as "absolute",
@@ -20,7 +20,7 @@ const BasicModal = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
-  const { gameOver, currAttempt, onRetry } = useAppData();
+  const { gameOver, currAttempt, onRetry } = useGameData();
 
   useEffect(() => {
     handleOpen();

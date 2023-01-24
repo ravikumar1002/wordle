@@ -19,6 +19,9 @@
     "baseUrl": "src",
     "paths": {
       "@components/*": ["components/*"],
+      "@config/*": ["config/*"],
+      "@context/*": ["context/*"],
+      "@utils/*": ["utils/*"],
     }
   },
   "include": ["./src"],

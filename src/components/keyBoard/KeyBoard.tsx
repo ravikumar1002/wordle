@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useCallback, useEffect } from "react";
-import { useAppData } from "../../context/app-context";
+import { useGameData } from "@context/game-context";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -18,18 +18,12 @@ const KeyBoard = () => {
   const row1Keys = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   const row2Keys = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
   const row3Keys = ["Z", "X", "C", "V", "B", "N", "M"];
-  const row4Keys = ["BACK", "ENTER"];
+  const row4Keys = ["CLEAR", "ENTER"];
 
-  const {
-    onSelectLetter,
-    currAttempt,
-    onEnter,
-    onDelete,
-  } = useAppData();
+  const { onSelectLetter, currAttempt, onEnter, onDelete } = useGameData();
 
   const handleKeyboard = useCallback(
     (event: any) => {
-      console.log(currAttempt)
       if (event.key === "Enter") {
         onEnter();
       } else if (event.key === "Backspace") {
@@ -74,10 +68,11 @@ const KeyBoard = () => {
     <Box sx={{ flexGrow: 1 }}>
       <Grid
         container
-        spacing={{ xs: 2, sm: 2,}}
+        spacing={{ xs: 2, sm: 2 }}
         columns={{ xs: 11, sm: 16, md: 22, lg: 22 }}
         sx={{
           justifyContent: "center",
+          margin: "0",
         }}
       >
         {row1Keys.map((key) => {
@@ -87,9 +82,10 @@ const KeyBoard = () => {
       <Grid
         container
         spacing={2}
-        columns={{ xs: 11, sm: 16, md: 21 , lg: 22}}
+        columns={{ xs: 11, sm: 16, md: 21, lg: 22 }}
         sx={{
           justifyContent: "center",
+          margin: "0",
         }}
       >
         {row2Keys.map((key) => {
@@ -99,9 +95,10 @@ const KeyBoard = () => {
       <Grid
         container
         spacing={2}
-        columns={{ xs: 11, sm: 16, md: 22 , lg: 22}}
+        columns={{ xs: 11, sm: 16, md: 22, lg: 22 }}
         sx={{
           justifyContent: "center",
+          margin: "0",
         }}
       >
         {row3Keys.map((key) => {
@@ -114,6 +111,7 @@ const KeyBoard = () => {
         columns={{ xs: 7, sm: 9, md: 13 }}
         sx={{
           justifyContent: "center",
+          margin: "0",
         }}
       >
         {row4Keys.map((key) => {

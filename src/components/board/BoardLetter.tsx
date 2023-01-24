@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useAppData } from "../../context/app-context";
-import Box from "@mui/material/Box";
+import { useGameData } from "@context/game-context";
+import { Box, Typography } from "@mui/material";
 
 interface IBoardLetterProps {
   letterPos: number;
@@ -15,7 +15,7 @@ const BoardLetter = (props: IBoardLetterProps) => {
     setDisableLetters,
     setCorrectLetters,
     setGuessedLetters,
-  } = useAppData();
+  } = useGameData();
 
   const { letterPos, attemptVal } = props;
 
@@ -29,7 +29,6 @@ const BoardLetter = (props: IBoardLetterProps) => {
     (correct ? "correct" : guessed ? "guessed" : "error");
 
   useEffect(() => {
-    console.log(letter);
     if (letter !== "" && !correct && !guessed) {
       setDisableLetters((prev: string[]) => [...new Set([...prev, letter])]);
     } else if (letter !== "" && correct) {
@@ -44,9 +43,9 @@ const BoardLetter = (props: IBoardLetterProps) => {
       attemptVal === currAttempt.attempt &&
       letterPos === currAttempt.letter
     ) {
-      return "2px solid black";
+      return "2px solid palette.action.selected";
     }
-    return "1px solid grey;";
+    return "1px solid palette.divider";
   };
 
   return (
@@ -55,9 +54,15 @@ const BoardLetter = (props: IBoardLetterProps) => {
       id={keyStyle === false ? "" : keyStyle}
       sx={{
         border: getNextFillBorder(),
+        color: "text.primary",
       }}
     >
-      {letter}
+      <Typography
+        variant="h5"
+        align="center"
+      >
+        {letter}
+      </Typography>
     </Box>
   );
 };
