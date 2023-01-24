@@ -11,7 +11,7 @@ interface IGameOver {
   guessedWord: boolean;
 }
 
-export interface IAppDataContextState {
+export interface IGameDataContextState {
   onSelectLetter: (key: string) => void;
   onDelete: () => void;
   onEnter: () => void;
@@ -34,13 +34,15 @@ export interface IAppDataContextState {
   setCorrectLetters: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-interface IAppDataProvider {
+interface IGameDataProvider {
   children: React.ReactNode;
 }
 
-export const appDataContext = createContext<IAppDataContextState | null>(null);
+export const gameDataContext = createContext<IGameDataContextState | null>(
+  null
+);
 
-const AppDataProvider = (props: IAppDataProvider) => {
+const GameDataProvider = (props: IGameDataProvider) => {
   const { children } = props;
 
   const [currAttempt, setCurrAttempt] = useState<ICurrAttempt>({
@@ -117,15 +119,12 @@ const AppDataProvider = (props: IAppDataProvider) => {
     ]);
     setGuessedLetters([]);
     setDisableLetters([]);
-    // disableLetters.length = 0
     setCorrectLetters([]);
     generateWordSet().then((words) => {
       setWordSet(words?.wordSet);
       setCorrectWord(words?.todaysWord);
     });
     setCurrAttempt({ attempt: 0, letter: 0 });
-    // setBoard([...boardDefaultValue]);
-    console.log(board, disableLetters, correctLetters, guessedLetters);
   };
 
   useEffect(() => {
@@ -140,7 +139,7 @@ const AppDataProvider = (props: IAppDataProvider) => {
   }, [guessedLetters]);
 
   return (
-    <appDataContext.Provider
+    <gameDataContext.Provider
       value={{
         onSelectLetter,
         onDelete,
@@ -165,14 +164,14 @@ const AppDataProvider = (props: IAppDataProvider) => {
       }}
     >
       {children}
-    </appDataContext.Provider>
+    </gameDataContext.Provider>
   );
 };
 
-const useAppData = () => {
-  const context = useContext(appDataContext);
+const useGameData = () => {
+  const context = useContext(gameDataContext);
   if (!context) throw new Error("Not Context");
   return context;
 };
 
-export { useAppData, AppDataProvider };
+export { useGameData, GameDataProvider };

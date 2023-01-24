@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAppData } from "@context/app-context";
+import { useGameData } from "@context/game-context";
 import Box from "@mui/material/Box";
 
 interface IBoardLetterProps {
@@ -15,7 +15,7 @@ const BoardLetter = (props: IBoardLetterProps) => {
     setDisableLetters,
     setCorrectLetters,
     setGuessedLetters,
-  } = useAppData();
+  } = useGameData();
 
   const { letterPos, attemptVal } = props;
 

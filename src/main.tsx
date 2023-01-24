@@ -1,4 +1,4 @@
-import { AppDataProvider } from "@context/app-context";
+import { useGameData } from "@context/game-context";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
@@ -6,8 +6,8 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <AppDataProvider>
-      <App />
-    </AppDataProvider>
+    <useGameData>
+        <App />
+    </useGameData>
   </React.StrictMode>
 );

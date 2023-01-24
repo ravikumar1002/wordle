@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useCallback, useEffect } from "react";
-import { useAppData } from "@context/app-context";
+import { useGameData } from "@context/game-context";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -25,7 +25,7 @@ const KeyBoard = () => {
     currAttempt,
     onEnter,
     onDelete,
-  } = useAppData();
+  } = useGameData();
 
   const handleKeyboard = useCallback(
     (event: any) => {

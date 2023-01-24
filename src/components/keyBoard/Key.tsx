@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import { useAppData } from "@context/app-context";
+import { useGameData } from "@context/game-context";
 
 interface IKeyProps {
   keyLetter: string;
@@ -16,7 +16,7 @@ export const Key = (props: IKeyProps) => {
     correctLetters,
     guessedLetters,
     currAttempt,
-  } = useAppData();
+  } = useGameData();
 
   const selectKeyLetter = () => {
     if (keyLetter === "ENTER") {
