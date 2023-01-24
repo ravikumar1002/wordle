@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from "react";
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
+import { createContext, useContext, useState, useMemo } from "react";
+import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 
 interface IAppDataContextState {
   mode: string;
@@ -16,15 +16,20 @@ const AppDataProvider = (props: IAppDataProps) => {
   const { children } = props;
   const [mode, setMode] = useState<string>("light");
 
-  const theme = createTheme({
-    palette: {
-        mode: mode,
-    },
-})
-
+  const appTheme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          //@ts-ignore
+          mode: mode,
+        },
+      }),
+    [mode]
+  );
 
   return (
-    <appDataContext.Provider value={{ mode, setMode , theme}}>
+    //@ts-ignore
+    <appDataContext.Provider value={{ mode, setMode, appTheme }}>
       {children}
     </appDataContext.Provider>
   );

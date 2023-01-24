@@ -11,7 +11,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   border: "2px solid white",
-  backgroundColor: "white",
+  backgroundColor: "background.default",
   width: 400,
   padding: "1rem 2rem ",
 };
@@ -29,7 +29,6 @@ const BasicModal = () => {
     <div>
       <Modal
         open={modalOpen}
-        // onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         sx={{
@@ -39,10 +38,22 @@ const BasicModal = () => {
         <Box sx={style}>
           {gameOver.guessedWord && (
             <>
-              <Typography variant="h6" align="center">
+              <Typography
+                variant="h6"
+                align="center"
+                sx={{
+                  color: "text.primary",
+                }}
+              >
                 You Correctly Guessed the Wordle :)
               </Typography>
-              <Typography variant="body1" align="center">
+              <Typography
+                variant="body1"
+                align="center"
+                sx={{
+                  color: "text.primary",
+                }}
+              >
                 You guessed in {currAttempt.attempt} attempts
               </Typography>
               <div
@@ -68,10 +79,24 @@ const BasicModal = () => {
           )}
           {!gameOver.guessedWord && (
             <>
-              <Typography variant="h6" align="center" gutterBottom>
+              <Typography
+                variant="h6"
+                align="center"
+                gutterBottom
+                sx={{
+                  color: "text.primary",
+                }}
+              >
                 Better Luck Next Time !!
               </Typography>
-              <Typography variant="body1" align="center" gutterBottom>
+              <Typography
+                variant="body1"
+                align="center"
+                gutterBottom
+                sx={{
+                  color: "text.primary",
+                }}
+              >
                 You used all your 6 attempts
               </Typography>
               <div
