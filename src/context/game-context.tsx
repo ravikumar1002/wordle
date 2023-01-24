@@ -38,9 +38,7 @@ interface IGameDataProvider {
   children: React.ReactNode;
 }
 
-export const gameDataContext = createContext<IGameDataContextState | null>(
-  null
-);
+export const gameDataContext = createContext<IGameDataContextState | null>(null);
 
 const GameDataProvider = (props: IGameDataProvider) => {
   const { children } = props;
