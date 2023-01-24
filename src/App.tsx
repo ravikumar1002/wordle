@@ -36,8 +36,14 @@ function App() {
           bgcolor: "background.default",
         }}
       >
-        <Box>
-          <Typography variant="h2" component="h2" textAlign={"center"}>
+        <Box sx={{
+          display: "flex"
+        }}>
+          <Typography variant="h2" component="h2" textAlign={"center"} sx={{
+            color: "text.primary",
+            alignSelf: "center",
+            flexGrow: "1",
+          }}>
             Wordle
           </Typography>
           <IconButton

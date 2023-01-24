@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { boardDefaultValue, generateWordSet } from "@utils/words";
+import Alert from '@mui/material/Alert';
 
 interface ICurrAttempt {
   attempt: number;
@@ -88,7 +89,9 @@ const GameDataProvider = (props: IGameDataProvider) => {
     if (wordSet.includes(currWord.toLowerCase())) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
     } else {
-      console.log("Word not found");
+      <Alert icon={false} severity="success">
+        This is a success alert — check it out!
+      </Alert>
     }
 
     if (currWord.toLowerCase() === correctWord.toLowerCase()) {
@@ -131,10 +134,6 @@ const GameDataProvider = (props: IGameDataProvider) => {
       setCorrectWord(words?.todaysWord);
     });
   }, []);
-
-  useEffect(() => {
-    console.log(guessedLetters);
-  }, [guessedLetters]);
 
   return (
     <gameDataContext.Provider
