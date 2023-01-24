@@ -20,14 +20,15 @@ const AppDataProvider = (props: IAppDataProps) => {
     () =>
       createTheme({
         palette: {
+          //@ts-ignore
           mode: mode,
         },
       }),
     [mode]
   );
 
-
   return (
+    //@ts-ignore
     <appDataContext.Provider value={{ mode, setMode, appTheme }}>
       {children}
     </appDataContext.Provider>

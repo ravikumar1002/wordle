@@ -74,9 +74,10 @@ export const Key = (props: IKeyProps) => {
           backgroundColor: getBackGroundColor(),
           border: getEnterBorder(),
           color: getColor(),
-          minWidth: { xs: "35px", sm: "30px", md: "40px", lg: "50px" },
+          minWidth: { xs: "25px", sm: "30px", md: "40px", lg: "50px" },
           padding: {
-            xs: "1.5rem 1rem",
+            xs: "1.5rem 0.8rem",
+            sm: "1.5rem 1rem",
             md: "0.5rem 1rem",
           },
           "&:hover": {

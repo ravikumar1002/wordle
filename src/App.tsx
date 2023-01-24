@@ -14,6 +14,7 @@ import { useAppData } from "@context/app-data-context";
 
 function App() {
   const { gameOver } = useGameData();
+  //@ts-ignore
   const { mode, setMode, appTheme } = useAppData();
 
   const theme = useTheme();
@@ -34,7 +35,7 @@ function App() {
         <Box
           sx={{
             display: "flex",
-            color:"text.primary",
+            color: "text.primary",
             padding: "0.5rem 1rem",
           }}
         >
