@@ -16,7 +16,7 @@ function App() {
   const { mode, setMode, appTheme } = useAppData();
 
   const theme = useTheme();
-
+  
   const handleChangeColorMode = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
     e.currentTarget.blur();

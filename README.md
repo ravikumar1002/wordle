@@ -6,5 +6,3 @@
    * React JS
    *  MUI
    * Context-api
-
-   
