@@ -83,7 +83,6 @@ const GameDataProvider = (props: IGameDataProvider) => {
 
   const onEnter = () => {
     if (currAttempt.letter !== 5) return;
-    console.log(wordSet, correctWord ," onEnter");
     let currWord = "";
     for (let i = 0; i < 5; i++) {
       currWord += board[currAttempt.attempt][i];
@@ -134,7 +133,6 @@ const GameDataProvider = (props: IGameDataProvider) => {
       setWordSet(words?.wordSet);
       setCorrectWord(words?.todaysWord);
     });
-    console.log(wordSet, correctWord, "Api recive");
   }, []);
 
   return (

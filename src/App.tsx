@@ -6,7 +6,6 @@ import { Typography, Box, IconButton } from "@mui/material";
 import BasicModal from "@components/modal";
 import { useGameData } from "@context/game-context";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
-// import theme from "@config/baseTheme";
 import { useMemo, useState } from "react";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
@@ -14,14 +13,13 @@ import { useAppData } from "@context/app-data-context";
 
 function App() {
   const { gameOver } = useGameData();
-  //@ts-ignore
   const { mode, setMode, appTheme } = useAppData();
 
   const theme = useTheme();
 
-  const colorMode = () => {
-    console.log(appTheme.palette.mode, theme.palette.mode);
-    setMode((prevMode: string) => (prevMode === "light" ? "dark" : "light"));
+  const handleChangeColorMode = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+    e.currentTarget.blur();
   };
 
   return (
@@ -59,7 +57,14 @@ function App() {
           >
             Wordle
           </Typography>
-          <IconButton sx={{ ml: 1 }} onClick={colorMode} color="inherit">
+          <IconButton
+            onClick={handleChangeColorMode}
+            color="inherit"
+            sx={{
+              ml: "1",
+              alignSelf: "center",
+            }}
+          >
             {appTheme.palette.mode === "dark" ? (
               <Brightness7Icon />
             ) : (

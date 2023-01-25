@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useGameData } from "@context/game-context";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
 interface IBoardLetterProps {
   letterPos: number;
@@ -18,6 +18,7 @@ const BoardLetter = (props: IBoardLetterProps) => {
   } = useGameData();
 
   const { letterPos, attemptVal } = props;
+  const theme = useTheme();
 
   const letter = board[attemptVal][letterPos];
 
@@ -43,9 +44,11 @@ const BoardLetter = (props: IBoardLetterProps) => {
       attemptVal === currAttempt.attempt &&
       letterPos === currAttempt.letter
     ) {
-      return "2px solid palette.action.selected";
+      // return `2px solid ${theme.palette.action.active}`;
+      return theme.palette.action.active;
     }
-    return "1px solid palette.divider";
+    // return `2px solid ${theme.palette.}`;
+    // return "inherit";
   };
 
   return (
@@ -53,14 +56,11 @@ const BoardLetter = (props: IBoardLetterProps) => {
       className="letter"
       id={keyStyle === false ? "" : keyStyle}
       sx={{
-        border: getNextFillBorder(),
+        borderColor: getNextFillBorder(),
         color: "text.primary",
       }}
     >
-      <Typography
-        variant="h5"
-        align="center"
-      >
+      <Typography variant="h5" align="center">
         {letter}
       </Typography>
     </Box>
