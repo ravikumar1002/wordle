@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { boardDefaultValue, generateWordSet } from "@utils/words";
-import Alert from '@mui/material/Alert';
+import { Alert, Snackbar } from "@mui/material";
 
 interface ICurrAttempt {
   attempt: number;
@@ -39,11 +39,13 @@ interface IGameDataProvider {
   children: React.ReactNode;
 }
 
-export const gameDataContext = createContext<IGameDataContextState | null>(null);
+export const gameDataContext = createContext<IGameDataContextState | null>(
+  null
+);
 
 const GameDataProvider = (props: IGameDataProvider) => {
   const { children } = props;
-  const [alertState, setAlertState] = useState<boolean>(false)
+  const [alertState, setAlertState] = useState<boolean>(false);
 
   const [currAttempt, setCurrAttempt] = useState<ICurrAttempt>({
     attempt: 0,
@@ -90,7 +92,7 @@ const GameDataProvider = (props: IGameDataProvider) => {
     if (wordSet.includes(currWord.toLowerCase())) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
     } else {
-      //
+      setAlertState(true);
     }
 
     if (currWord.toLowerCase() === correctWord.toLowerCase()) {
@@ -156,10 +158,19 @@ const GameDataProvider = (props: IGameDataProvider) => {
         setGuessedLetters,
         correctLetters,
         setCorrectLetters,
-        onRetry,
+        onRetry
       }}
     >
       {children}
+      <Snackbar
+        open={alertState}
+        autoHideDuration={1000}
+        onClose={() => {
+          setAlertState(false);
+        }}
+        message="Word not found"
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      />
     </gameDataContext.Provider>
   );
 };
