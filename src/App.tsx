@@ -20,7 +20,6 @@ function App() {
   const theme = useTheme();
 
   const colorMode = () => {
-    console.log(appTheme.palette.mode, theme.palette.mode);
     setMode((prevMode: string) => (prevMode === "light" ? "dark" : "light"));
   };
 
