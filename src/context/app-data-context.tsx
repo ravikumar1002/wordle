@@ -1,9 +1,11 @@
 import { createContext, useContext, useState, useMemo } from "react";
 import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 
+import { PaletteMode, Theme } from "@mui/material";
 interface IAppDataContextState {
-  mode: string;
-  setMode: React.Dispatch<React.SetStateAction<string>>;
+  mode: PaletteMode;
+  setMode: React.Dispatch<React.SetStateAction<PaletteMode>>;
+  appTheme: Theme;
 }
 
 export const appDataContext = createContext<IAppDataContextState | null>(null);
@@ -14,21 +16,19 @@ interface IAppDataProps {
 
 const AppDataProvider = (props: IAppDataProps) => {
   const { children } = props;
-  const [mode, setMode] = useState<string>("light");
+  const [mode, setMode] = useState<PaletteMode>("light");
 
   const appTheme = useMemo(
     () =>
       createTheme({
         palette: {
-          //@ts-ignore
-          mode: mode,
+          mode,
         },
       }),
     [mode]
   );
 
   return (
-    //@ts-ignore
     <appDataContext.Provider value={{ mode, setMode, appTheme }}>
       {children}
     </appDataContext.Provider>

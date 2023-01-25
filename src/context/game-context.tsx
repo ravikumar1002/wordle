@@ -83,7 +83,6 @@ const GameDataProvider = (props: IGameDataProvider) => {
 
   const onEnter = () => {
     if (currAttempt.letter !== 5) return;
-
     let currWord = "";
     for (let i = 0; i < 5; i++) {
       currWord += board[currAttempt.attempt][i];
@@ -158,7 +157,7 @@ const GameDataProvider = (props: IGameDataProvider) => {
         setGuessedLetters,
         correctLetters,
         setCorrectLetters,
-        onRetry
+        onRetry,
       }}
     >
       {children}
